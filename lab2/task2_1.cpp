@@ -11,13 +11,12 @@ int main() {
     cout << "\tx\tsin(x)\n";
 
     x = x1;
-    do
+    while (x <= x2)
     {
         y = sin(x);
         cout << "\t" << x << "\t" << y << endl;
         x = x + 0.01;
     }
-    while (x <= x2);
     
     return 0;
 }
