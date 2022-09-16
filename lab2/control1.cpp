@@ -1,34 +1,53 @@
 #include <iostream>
 #include <cmath>
-#include <set>
 using namespace std;
 
-int main() {
-    
-    int n;
+int main() 
+{
+    long long n;
     cout << "Please, enter the number: ";
     cin >> n;
+    bool prime = true;
 
-    if (n < 2 || n%2 == 0) cout << "No, it is not super prime" << endl;
-    else {
-        int arr[n / 2] = {};
-        set <int> primes; // set is the best choice if u need to check if u have a certain element
-        primes.insert(2);
+    if( n <= 2 || n % 2 == 0) prime = false;
+    else 
+    {
+        // checking if the number is prime
+        for (long long j = 3; j <= sqrt(n); j += 2) 
+            if (n % j == 0) prime = false;
 
-        //  finding prime numbers using the sieve of eratosthenes
-        for (int i = 3; i <= n; i += 2) {
-            if (arr[i / 2 - 1] == 0) {
-                primes.insert(i);
-                for (int j = i; i * j <= n; j += 2) arr[ i * j / 2 - 1] = 1;
+        // finding number position in prime's list
+        if (prime) 
+        {
+            long long counter = 1;
+            bool flag;
+            for (long long i = 3;  i <= n; i += 2) 
+            {
+                flag = true;
+                for (long long j = 3; j <= sqrt(i); j += 2) 
+                {
+                    if (i % j == 0) 
+                    {
+                        flag = false;
+                        break;
+                    }
+                }
+                if (flag) counter++;
+            }
+            
+            // checking if the number's position is prime
+            if (counter % 2 == 0 && counter != 2) prime = false;
+            else 
+            {
+                for (long long j = 3; j <= sqrt(n); j += 2)
+                    if (n % j == 0) prime = false;
             }
         }
-
-        // checking if n is prime and its position is prime
-        if (arr[n / 2 - 1] == 0 && primes.find(primes.size()) != primes.end() ) 
-            cout << "Yes, it is super prime" << endl;
-        else 
-            cout << "No, it is not super prime" << endl;
     }
 
+    if (prime)
+        cout << "Yes, " << n << " is super prime" << endl;
+    else 
+        cout << "No, " << n << " is not super prime" << endl;
     return 0;
 }
