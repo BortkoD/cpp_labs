@@ -1,5 +1,6 @@
 #include <iostream>
 #include <math.h>
+#include <iomanip>
 using namespace std;
 
 long double firBinSearch(double a, int n)
@@ -23,11 +24,12 @@ int main() {
 
     double a;
     int n;
+    cout << "Please enter a and n: ";
     cin >> a >> n;
 
     double ans = firBinSearch(a, n);
 
-    cout << ans;
+    cout << setprecision(7) << ans << endl;
 
     return 0;
 }
