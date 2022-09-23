@@ -13,6 +13,8 @@ class Student
         void set_average_score(double);
         double get_average_score();
 
+        Student(string, string);
+
     private:
         int scores[5];
         double average_score;

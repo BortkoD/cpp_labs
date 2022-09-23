@@ -3,6 +3,12 @@
 #include "student.h"
 using namespace std;
 
+Student::Student(string name, string last_name)
+{
+    Student::set_name(name);
+    Student::set_last_name(last_name);
+}
+
 void Student::set_name(std::string student_name)
 {
     Student::name = student_name;
