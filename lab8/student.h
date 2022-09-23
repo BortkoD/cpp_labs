@@ -14,6 +14,8 @@ class Student
         double get_average_score();
 
         Student(string, string);
+        void save();
+        ~Student();
 
     private:
         int scores[5];

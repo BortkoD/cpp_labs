@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <fstream>
 #include "student.h"
 using namespace std;
 
@@ -44,4 +45,21 @@ void Student::set_average_score(double ball)
 double Student::get_average_score()
 {
     return Student::average_score;
+}
+
+void Student::save()
+{
+    ofstream fout("students.txt", ios::app);
+    fout << Student::get_name() << " "
+        << Student::get_last_name() << " ";
+    for (int i = 0; i <5; ++i) {
+        fout << Student::scores[i] <<" ";
+    }
+    fout << endl;
+    fout.close();
+}
+
+Student::~Student()
+{
+    Student::save();
 }
