@@ -1,44 +1,45 @@
 #include <iostream>
-#include <string>
-using namespace std;
-class DivideByZeroError
-{
-    public:
-        DivideByZeroError (): message ("Divide by zero") { } // область за двоеточием - список инициализации членов. 
-                                                             // Т.е. в этом месте мы инициализируем message. Это необходимо, т.к. у этой переменной 
-                                                             // нет конструктора по умолчанию (также актуально в случае констант, т.к. то, что в 
-                                                             // фигурных скобках, будет воспринято не как инициализация константы, а как присвоение
-                                                             // ей значения, т.е. ошибка
-        void printMessage () const {
-            cout << message << endl;
-        }
-    private:
-        string message;
-};
+#include "student.h"
+#include "student.cpp"
 
-float quotient (int numl, int num2)
+int main()
 {
-    if (num2 == 0)
-        throw DivideByZeroError();
-    return (float)numl / num2;
-}
+    string name;
+    string last_name;
 
-int main ()
-{
-    cout << "Enter two integers to calculate their quotient:\n";
-    int number1, number2;
-    cin >> number1;
-    cin >> number2;
-    try
-    {
-        float result = quotient(number1, number2);
-        cout << "Quotient = " << result << endl;
+    cout << "Name: ";
+    getline(std::cin, name);
+    cout << "Last name: ";
+    getline(std::cin, last_name);
+
+    Student *student02 = new Student(name, last_name);
+
+    int scores[5];
+    int sum = 0;
+    for (int i = 0; i < 5; ++i) {
+        cout << "Score " << i+1 << ": ";
+        cin >> scores[i];
+        sum += scores[i];
     }
-    catch (DivideByZeroError& error) // возвращаемый объект - *this
-    {
-        cout << "ERROR: ";
-        error.printMessage();
-        return 1; // end the program because of error
+
+    student02 -> set_name(name); // -> оператор косвенного обращения
+    student02 -> set_last_name(last_name);
+    try {
+        student02 -> set_scores(scores);
     }
-    return 0; // normal ending of program
+    catch(Student::ExScore& ex)
+    {
+
+    cout << "\nОшибка инициализации " << ex.origin;
+    cout << "\nВведенное значение оценки " << ex.iValue << " является недопустимым\n";
+    }
+    float average_score = sum / 5.0;
+    student02 -> set_average_score(average_score);
+
+    cout << "Average ball for " << student02->get_name() << " "
+    << student02->get_last_name() << " is "
+    << student02->get_average_score() << endl;
+
+    delete student02;
+    return 0;
 }
