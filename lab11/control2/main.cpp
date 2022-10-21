@@ -1,5 +1,4 @@
 #include "Point.cpp"
-#include <iostream>
 #include <string>
 #include <vector>
 #include <algorithm> // для алгоритма сортировки
