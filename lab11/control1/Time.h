@@ -13,11 +13,11 @@ class Time {
         Time operator+ (const Time&) const;
         Time operator+ (const float&) const;
         Time operator- (const Time&) const;
-        Time operator> (const Time&) const;
-        Time operator>= (const Time&) const;
-        Time operator< (const Time&) const;
-        Time operator<= (const Time&) const;
-        Time operator== (const Time&) const;
+        bool operator> (const Time&) const;
+        bool operator>= (const Time&) const;
+        bool operator< (const Time&) const;
+        bool operator<= (const Time&) const;
+        bool operator== (const Time&) const;
 
         operator float( ) const
         {

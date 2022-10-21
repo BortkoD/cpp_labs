@@ -55,7 +55,7 @@ Time Time::operator- (const Time& tm2) const {
     return Time(h, m, s);
 }
 
-Time Time::operator> (const Time& tm2) const {
+bool Time::operator> (const Time& tm2) const {
     if (hours > tm2.hours) return true;
     else if (hours == tm2.hours) {
         if (minutes > tm2.minutes) return true;
@@ -70,7 +70,7 @@ Time Time::operator> (const Time& tm2) const {
         return false;
 }
 
-Time Time::operator>= (const Time& tm2) const {
+bool Time::operator>= (const Time& tm2) const {
     if (hours > tm2.hours) return true;
     else if (hours == tm2.hours) {
         if (minutes > tm2.minutes) return true;
@@ -85,7 +85,7 @@ Time Time::operator>= (const Time& tm2) const {
         return false;
 }
 
-Time Time::operator< (const Time& tm2) const {
+bool Time::operator< (const Time& tm2) const {
     if (hours < tm2.hours) return true;
     else if (hours == tm2.hours) {
         if (minutes < tm2.minutes) return true;
@@ -100,7 +100,7 @@ Time Time::operator< (const Time& tm2) const {
         return false;
 }
 
-Time Time::operator<= (const Time& tm2) const {
+bool Time::operator<= (const Time& tm2) const {
     if (hours < tm2.hours) return true;
     else if (hours == tm2.hours) {
         if (minutes < tm2.minutes) return true;
@@ -115,7 +115,7 @@ Time Time::operator<= (const Time& tm2) const {
         return false;
 }
 
-Time Time::operator== (const Time& tm2) const {
+bool Time::operator== (const Time& tm2) const {
     if (minutes == tm2.minutes && seconds == tm2.seconds && hours == tm2.hours) return true;
     else return false;
 }
