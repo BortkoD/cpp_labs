@@ -5,7 +5,8 @@
         "iomanip": "cpp",
         "random": "cpp",
         "*.tcc": "cpp",
-        "tuple": "cpp"
+        "tuple": "cpp",
+        "array": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }
